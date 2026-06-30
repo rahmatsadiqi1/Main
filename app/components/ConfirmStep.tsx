@@ -13,6 +13,12 @@ function formatReadableDate(dateStr: string) {
   return `${DAY_NAMES[date.getDay()]}, ${d} ${MONTH_NAMES[m - 1]} ${y}`;
 }
 
+function formatDob(dateStr: string) {
+  if (!dateStr) return '—';
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return `${d} ${MONTH_NAMES[m - 1]} ${y}`;
+}
+
 export default function ConfirmStep({
   treatment,
   date,
@@ -57,7 +63,7 @@ export default function ConfirmStep({
         <Row label="Name" value={details.patientName} />
         <Row label="Email" value={details.patientEmail} />
         <Row label="Phone" value={details.patientPhone} />
-        <Row label="Date of Birth" value={details.dateOfBirth} />
+        <Row label="Date of Birth" value={formatDob(details.dateOfBirth)} />
         <Row label="Gender" value={details.gender || '—'} />
         <Row label="Patient Type" value={details.isNewPatient === 'new' ? 'New patient' : details.isNewPatient === 'existing' ? 'Existing patient' : '—'} />
         {details.notes && <Row label="Notes" value={details.notes} />}
