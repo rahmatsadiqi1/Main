@@ -1,0 +1,79 @@
+'use client';
+
+import { Treatment } from '../types';
+import { PatientDetails } from './PatientDetailsStep';
+
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+function formatReadableDate(dateStr: string) {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(y, m - 1, d);
+  return `${DAY_NAMES[date.getDay()]}, ${d} ${MONTH_NAMES[m - 1]} ${y}`;
+}
+
+export default function ConfirmStep({
+  treatment,
+  date,
+  time,
+  details,
+  onConfirm,
+  onBack,
+  loading,
+}: {
+  treatment: Treatment;
+  date: string;
+  time: string;
+  details: PatientDetails;
+  onConfirm: () => void;
+  onBack: () => void;
+  loading: boolean;
+}) {
+  const Row = ({ label, value }: { label: string; value: string }) => (
+    <div className="flex justify-between py-3 border-b border-gray-100 last:border-0">
+      <span className="text-sm text-gray-500">{label}</span>
+      <span className="text-sm font-semibold text-gray-800 text-right max-w-[60%]">{value}</span>
+    </div>
+  );
+
+  return (
+    <div>
+      <h2 className="text-xl font-bold text-[#1a5f7a] mb-1">Confirm Appointment</h2>
+      <p className="text-gray-500 text-sm mb-6">Please review your details before confirming.</p>
+
+      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm mb-4">
+        <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Appointment</h3>
+        <Row label="Treatment" value={treatment.name} />
+        <Row label="Duration" value={`${treatment.duration} minutes`} />
+        <Row label="Date" value={formatReadableDate(date)} />
+        <Row label="Time" value={time} />
+      </div>
+
+      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm mb-6">
+        <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Patient</h3>
+        <Row label="Name" value={details.patientName} />
+        <Row label="Email" value={details.patientEmail} />
+        <Row label="Phone" value={details.patientPhone} />
+        <Row label="Date of Birth" value={details.dateOfBirth} />
+        {details.notes && <Row label="Notes" value={details.notes} />}
+      </div>
+
+      <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-sm text-blue-800">
+        A confirmation will be shown after booking. Please arrive 10 minutes early. Contact us to reschedule.
+      </div>
+
+      <div className="flex justify-between">
+        <button onClick={onBack} disabled={loading} className="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold text-gray-600 hover:bg-gray-50 transition-colors disabled:opacity-50">
+          ← Back
+        </button>
+        <button
+          onClick={onConfirm}
+          disabled={loading}
+          className="px-8 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center gap-2"
+        >
+          {loading ? 'Confirming...' : 'Confirm Booking ✓'}
+        </button>
+      </div>
+    </div>
+  );
+}
