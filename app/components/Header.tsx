@@ -18,6 +18,7 @@ export default function Header() {
         <nav className="flex gap-4 text-sm">
           <Link href="/" className="hover:text-blue-200 transition-colors">Book</Link>
           <Link href="/my-bookings" className="hover:text-blue-200 transition-colors">My Bookings</Link>
+          <Link href="/admin" className="hover:text-blue-200 transition-colors text-blue-300">Admin</Link>
         </nav>
       </div>
     </header>

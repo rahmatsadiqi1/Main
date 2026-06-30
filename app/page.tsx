@@ -136,7 +136,24 @@ export default function Home() {
           )}
         </div>
 
-        <footer className="text-center text-xs text-gray-400 mt-8 pb-4">
+        <div className="bg-white rounded-2xl border border-gray-100 p-5 mt-6 flex flex-col sm:flex-row gap-4 items-center justify-between text-sm">
+          <div className="flex items-center gap-2 text-gray-600">
+            <span>📍</span>
+            <span>Sadiqi Medical Centre, Leyton, East London</span>
+          </div>
+          <div className="flex gap-6 text-gray-500">
+            <a href="tel:+44" className="hover:text-[#1a5f7a] flex items-center gap-1.5">
+              <span>📞</span> Call us
+            </a>
+            <a href="https://sadiqimedicalcentre.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f7a] flex items-center gap-1.5">
+              <span>🌐</span> Website
+            </a>
+            <a href="https://www.instagram.com/sadiqimedicalcentre/" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f7a] flex items-center gap-1.5">
+              <span>📸</span> Instagram
+            </a>
+          </div>
+        </div>
+        <footer className="text-center text-xs text-gray-400 mt-4 pb-4">
           <p>Sadiqi Medical Centre · Open 7 Days a Week · Book online or call us</p>
         </footer>
       </main>

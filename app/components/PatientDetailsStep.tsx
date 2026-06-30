@@ -74,7 +74,7 @@ export default function PatientDetailsStep({
         <Field label="Full Name *" field="patientName" placeholder="e.g. Jane Smith" />
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="Email Address *" field="patientEmail" type="email" placeholder="jane@example.com" />
-          <Field label="Phone Number *" field="patientPhone" type="tel" placeholder="+61 4xx xxx xxx" />
+          <Field label="Phone Number *" field="patientPhone" type="tel" placeholder="+44 7xxx xxxxxx" />
         </div>
         <Field label="Date of Birth *" field="dateOfBirth" type="date" />
         <div>
