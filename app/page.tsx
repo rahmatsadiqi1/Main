@@ -16,6 +16,8 @@ const EMPTY_DETAILS: PatientDetails = {
   patientEmail: '',
   patientPhone: '',
   dateOfBirth: '',
+  gender: '',
+  isNewPatient: '',
   notes: '',
 };
 
@@ -38,6 +40,8 @@ export default function Home() {
         patientEmail: details.patientEmail,
         patientPhone: details.patientPhone,
         dateOfBirth: details.dateOfBirth,
+        gender: details.gender,
+        isNewPatient: details.isNewPatient,
         treatmentId: treatment.id,
         treatmentName: treatment.name,
         date,
@@ -136,21 +140,39 @@ export default function Home() {
           )}
         </div>
 
-        <div className="bg-white rounded-2xl border border-gray-100 p-5 mt-6 flex flex-col sm:flex-row gap-4 items-center justify-between text-sm">
-          <div className="flex items-center gap-2 text-gray-600">
-            <span>📍</span>
-            <span>Sadiqi Medical Centre, Leyton, East London</span>
+        <div className="bg-white rounded-2xl border border-gray-100 p-5 mt-6 text-sm">
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-4 pb-4 border-b border-gray-100">
+            <div className="flex items-center gap-2 text-gray-600 font-medium">
+              <span>📍</span>
+              <span>Sadiqi Medical Centre, Leyton, East London</span>
+            </div>
+            <div className="flex gap-5 text-gray-500">
+              <a href="tel:+44" className="hover:text-[#1a5f7a] flex items-center gap-1.5 transition-colors">
+                <span>📞</span> Call us
+              </a>
+              <a href="https://sadiqimedicalcentre.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f7a] flex items-center gap-1.5 transition-colors">
+                <span>🌐</span> Website
+              </a>
+              <a href="https://www.instagram.com/sadiqimedicalcentre/" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f7a] flex items-center gap-1.5 transition-colors">
+                <span>📸</span> Instagram
+              </a>
+            </div>
           </div>
-          <div className="flex gap-6 text-gray-500">
-            <a href="tel:+44" className="hover:text-[#1a5f7a] flex items-center gap-1.5">
-              <span>📞</span> Call us
-            </a>
-            <a href="https://sadiqimedicalcentre.co.uk" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f7a] flex items-center gap-1.5">
-              <span>🌐</span> Website
-            </a>
-            <a href="https://www.instagram.com/sadiqimedicalcentre/" target="_blank" rel="noopener noreferrer" className="hover:text-[#1a5f7a] flex items-center gap-1.5">
-              <span>📸</span> Instagram
-            </a>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Opening Hours</p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              {[
+                { day: 'Monday – Friday', hours: '8:00 AM – 6:00 PM' },
+                { day: 'Saturday', hours: '9:00 AM – 5:00 PM' },
+                { day: 'Sunday', hours: '10:00 AM – 4:00 PM' },
+                { day: 'Bank Holidays', hours: '10:00 AM – 2:00 PM' },
+              ].map((h) => (
+                <div key={h.day} className="bg-[#f0f7ff] rounded-lg px-3 py-2">
+                  <p className="font-semibold text-gray-700">{h.day}</p>
+                  <p className="text-[#1a5f7a] font-medium mt-0.5">{h.hours}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <footer className="text-center text-xs text-gray-400 mt-4 pb-4">

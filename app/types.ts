@@ -17,6 +17,8 @@ export interface Booking {
   patientEmail: string;
   patientPhone: string;
   dateOfBirth: string;
+  gender: string;
+  isNewPatient: string;
   treatmentId: string;
   treatmentName: string;
   date: string;
